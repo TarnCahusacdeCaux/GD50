@@ -91,6 +91,14 @@ function PlayState:update(dt)
 		self.bird.x = VIRTUAL_WIDTH - self.bird.width
 	end
 
+	if love.keyboard.wasPressed("space") then
+		sounds["jump"]:play()
+		self.bird.dy = self.bird.jumpForce
+	elseif love.mouseWasPressed(1) then
+		sounds["jump"]:play()
+		self.bird.dy = self.bird.jumpForce
+	end
+
 	self.bird:update(dt)
 
 	self.birdSpeed = self.birdSpeed + self.birdSpeedIncrement

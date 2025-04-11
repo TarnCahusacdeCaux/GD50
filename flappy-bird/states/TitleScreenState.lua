@@ -14,7 +14,8 @@ function TitleScreenState:render()
 	love.graphics.printf("Enter to Start\nSpace to Jump", 0, 100, VIRTUAL_WIDTH, "center")
 
 	if not io.open("bestTime.txt", "r") then
-		local bestTimeFile = io.open("bestTime.txt", "w"):write(0)
+		local bestTimeFile = io.open("bestTime.txt", "w")
+		bestTimeFile:write(0)
 		bestTimeFile:close()
 	end
 	local bestTimeFile = io.open("bestTime.txt", "r")
