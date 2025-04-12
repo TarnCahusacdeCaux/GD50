@@ -15,6 +15,7 @@ function PlayState:init()
 	self.birdSpeedIncrement = 0.04
 	self.logPairs = {}
 	self.logSpawnTimer = 0
+	self.logSpawnEvery = math.random(1, 3)
 	self.logSpeedIncrement = 10
 	self.lastY = -LOG_HEIGHT + math.random(80) + 20
 	self.time = 0
@@ -27,7 +28,7 @@ function PlayState:update(dt)
 	self.time = self.time + dt
 
 	self.logSpawnTimer = self.logSpawnTimer + dt
-	if self.logSpawnTimer > 2 then
+	if self.logSpawnTimer > self.logSpawnEvery then
 		local y =
 			math.max(-LOG_HEIGHT + 10, math.min(self.lastY + math.random(-65, 65), VIRTUAL_HEIGHT - 90 - LOG_HEIGHT))
 		self.lastY = y
@@ -103,6 +104,7 @@ function PlayState:update(dt)
 
 	self.birdSpeed = self.birdSpeed + self.birdSpeedIncrement
 	logSpeed = logSpeed + self.logSpeedIncrement * dt
+	self.logSpawnEvery = math.random(1, 3)
 end
 
 function PlayState:render()
